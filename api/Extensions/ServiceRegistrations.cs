@@ -1,4 +1,6 @@
+using contracts.LogService;
 using entities.DataContexts;
+using log;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Extensions
@@ -11,6 +13,11 @@ namespace api.Extensions
                 options.UseNpgsql(Environment.GetEnvironmentVariable("DB_CONNECTION") ?? string.Empty,
                         npgsqlOptions => npgsqlOptions.MigrationsAssembly("api"))
                     .LogTo(Console.WriteLine));
+        }
+
+        public static void ConfigureDIs(this IServiceCollection service)
+        {
+            service.AddScoped<ILoggerManager, LoggerManager>();
         }
     }
 }

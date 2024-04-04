@@ -30,7 +30,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\contracts\contracts.csproj" />
       <ProjectReference Include="..\entities\entities.csproj" />
+      <ProjectReference Include="..\log\log.csproj" />
     </ItemGroup>
 
 </Project>
