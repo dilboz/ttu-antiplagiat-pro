@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ttu_antiplagiat_pro@localhost" uuid="f5257848-3028-4af9-bd0b-fd13a79b95be">
+    <data-source source="LOCAL" name="localhost@localhost" uuid="f5257848-3028-4af9-bd0b-fd13a79b95be">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

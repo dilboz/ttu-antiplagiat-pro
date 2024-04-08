@@ -27,12 +27,15 @@
     <ItemGroup>
       <Folder Include="Controllers\Auth\" />
       <Folder Include="Controllers\Ping\" />
+      <Folder Include="logs\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\contracts\contracts.csproj" />
       <ProjectReference Include="..\entities\entities.csproj" />
       <ProjectReference Include="..\log\log.csproj" />
+      <ProjectReference Include="..\repositories\repositories.csproj" />
+      <ProjectReference Include="..\services\services.csproj" />
     </ItemGroup>
 
 </Project>

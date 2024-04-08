@@ -28,7 +28,16 @@ namespace api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValue(new DateTime(2024, 4, 5, 7, 5, 42, 255, DateTimeKind.Utc).AddTicks(8813));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ExpiredAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsUsed")
@@ -80,44 +89,51 @@ namespace api.Migrations
 
             modelBuilder.Entity("entities.Models.User", b =>
                 {
-                    b.Property<Guid>("Guid")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2024, 4, 5, 7, 5, 42, 255, DateTimeKind.Unspecified).AddTicks(8073), new TimeSpan(0, 0, 0, 0, 0)));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime?>("ExparedResetToken")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsDeleted")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ResetToken")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("ResetTokenByLoginExpires")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTimeOffset?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
@@ -127,7 +143,7 @@ namespace api.Migrations
             modelBuilder.Entity("entities.Models.Otp", b =>
                 {
                     b.HasOne("entities.Models.User", "User")
-                        .WithMany("Otps")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -149,11 +165,6 @@ namespace api.Migrations
             modelBuilder.Entity("entities.Models.Role", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("entities.Models.User", b =>
-                {
-                    b.Navigation("Otps");
                 });
 #pragma warning restore 612, 618
         }
